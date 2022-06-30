@@ -1,9 +1,7 @@
 # MastodonTools
 Use someone else's server's cache to restore your server's lost content!
 
-Go to download or download the source code to compile [Mastodot](https://github.com/Unreal-System/Mastodot) to get Mastodot.dll
-
-Then delete the original Mastodot.dll and re-import the Mastodot.dll you downloaded or you compiled
+Just go to download the source code of the current library and compile it
 
 Then find a site from your Follower that has your cache, communicate with the other site in a friendly manner to get permission, and create an account at the other site.
 
