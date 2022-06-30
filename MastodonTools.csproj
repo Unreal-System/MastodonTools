@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Mastodot">
-      <HintPath>.\..\Mastodot-v_1.1.2\Mastodot\bin\Release\netstandard2.0\Mastodot.dll</HintPath>
-    </Reference>
+    <PackageReference Include="MastodotRev" Version="1.1.2" />
   </ItemGroup>
 
 </Project>
