@@ -279,6 +279,7 @@ static class Program
 
     private static void DownloadMedia(DateTime time, string sourceUrl, string downloadPath)
     {
+		Thread.Sleep(500);
         if (File.Exists(downloadPath) == true)
         {
             Console.WriteLine($"SourceTime: {time} Downloading: {sourceUrl} Has Exist!");
