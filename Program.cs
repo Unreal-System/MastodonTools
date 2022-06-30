@@ -211,7 +211,7 @@ static class Program
                                 var file = ExportDir + media.RemoteUrl.Substring(head);
 
                                 if (Directory.Exists(paths) != true) Directory.CreateDirectory(paths);
-                                if (File.Exists(file) != true) DownloadMedia(media.Url, file);
+                                if (File.Exists(file) != true) DownloadMedia(i.CreatedAt, media.Url, file);
                             }
                         }
                     }
@@ -239,7 +239,7 @@ static class Program
                                     var file = ExportDir + media.RemoteUrl.Substring(head);
 
                                     if (Directory.Exists(paths) != true) Directory.CreateDirectory(paths);
-                                    if (File.Exists(file) != true) DownloadMedia(media.Url, file);
+                                    if (File.Exists(file) != true) DownloadMedia(i.CreatedAt, media.Url, file);
                                 }
                             }
                         }
@@ -277,9 +277,9 @@ static class Program
     //    } catch (Exception ex) { Console.WriteLine(ex.Message); return true; }
     //}
 
-    private static void DownloadMedia(string sourceUrl, string downloadPath)
+    private static void DownloadMedia(DateTime time, string sourceUrl, string downloadPath)
     {
-        Console.WriteLine($"Downloading: {sourceUrl}");
+        Console.WriteLine($"SourceTime: {time} Downloading: {sourceUrl}");
         try
         {
             HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(sourceUrl);
