@@ -279,26 +279,34 @@ static class Program
 
     private static void DownloadMedia(DateTime time, string sourceUrl, string downloadPath)
     {
-        Console.WriteLine($"SourceTime: {time} Downloading: {sourceUrl}");
-        try
+        if (File.Exists(downloadPath) == true)
         {
-            HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(sourceUrl);
-            webReq.Method = "GET";
-            webReq.Headers.Add("Accept-Encoding", "gzip, deflate");
-            webReq.Headers.Add("Accept-Language", "zh-CN,zh;q=0.9");
-            webReq.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36";
-            webReq.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-            using (var Response = (HttpWebResponse)webReq.GetResponse())
+            Console.WriteLine($"SourceTime: {time} Downloading: {sourceUrl} Has Exist!");
+        }
+        else
+        {
+            Console.WriteLine($"SourceTime: {time} Downloading: {sourceUrl}");
+            try
             {
-                using (var fs = File.OpenWrite(downloadPath))
+                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(sourceUrl);
+                webReq.Method = "GET";
+                webReq.Headers.Add("Accept-Encoding", "gzip, deflate");
+                webReq.Headers.Add("Accept-Language", "zh-CN,zh;q=0.9");
+                webReq.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36";
+                webReq.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+                using (var Response = (HttpWebResponse)webReq.GetResponse())
                 {
-                    using (var sr = new StreamReader(Response.GetResponseStream(), Encoding.UTF8))
+                    using (var fs = File.OpenWrite(downloadPath))
                     {
-                        sr.BaseStream.CopyTo(fs);
+                        using (var sr = new StreamReader(Response.GetResponseStream(), Encoding.UTF8))
+                        {
+                            sr.BaseStream.CopyTo(fs);
+                        }
                     }
                 }
             }
-        } catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+        }
     }
 }
